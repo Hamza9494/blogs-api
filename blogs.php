@@ -1,6 +1,5 @@
  <?php
-
-    header('Access-Control-Allow-Origin: *');
+     header('Access-Control-Allow-Origin: *');
     header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
     header('Content-Type: application/json');
@@ -36,6 +35,11 @@
 
     $user_token = explode("Bearer ", $headers['Authorization']);
 
+    if(!$headers['Authorization']) {
+        echo json_encode(["error_message" => "Authorization header missing"]);
+        die();
+    }
+
     $jwt = $user_token[1];
 
 
@@ -47,7 +51,7 @@
 
         //decoded user id from fron end
         $user_id = $decoded["id"];
-        $sql = "SELECT * FROM user WHERE id = ?";
+        $sql = "SELECT * FROM users WHERE id = ?";
         $database = new Database('localhost', 'root', '', 'blogs');
 
         $conn =  $database->connect();

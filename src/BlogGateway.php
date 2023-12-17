@@ -24,7 +24,7 @@ class BlogGateway
 
 	public function create($user_id, $blog)
 	{
-		$sql = 'INSERT INTO final_blogs (user_id , author , title , body) VALUES ( :user_id , :author , :title , :body)';
+		$sql = 'INSERT INTO  blogs (user_id , author , title , body) VALUES ( :user_id , :author , :title , :body)';
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindParam(":user_id", $user_id);
 		$stmt->bindParam(":author", $blog['author']);
