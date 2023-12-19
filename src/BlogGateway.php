@@ -10,7 +10,7 @@ class BlogGateway
 
 	public function getAll($id)
 	{
-		$sql = 'SELECT * FROM final_blogs WHERE user_id = :id ';
+		$sql = 'SELECT * FROM  blogs WHERE user_id = :id ';
 		$stmt =  $this->conn->prepare($sql);
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
@@ -36,7 +36,7 @@ class BlogGateway
 
 	public function get($id)
 	{
-		$sql = "SELECT * FROM final_blogs WHERE id = :id";
+		$sql = "SELECT * FROM  blogs WHERE id = :id";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
@@ -46,7 +46,7 @@ class BlogGateway
 
 	public function update($new, $cur)
 	{
-		$sql = " UPDATE final_blogs SET author = :author , title = :title , body = :body , author = :author WHERE id = :id ";
+		$sql = " UPDATE   blogs SET author = :author , title = :title , body = :body , author = :author WHERE id = :id ";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindValue(":author", $new['author'] ?? $cur['author']);
 		$stmt->bindValue(":title", $new['title'] ?? $cur['title']);
@@ -60,7 +60,7 @@ class BlogGateway
 
 	public function delete($id)
 	{
-		$sql = "DELETE FROM final_blogs WHERE id = :id ";
+		$sql = "DELETE FROM  blogs WHERE id = :id ";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
