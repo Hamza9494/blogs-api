@@ -46,7 +46,7 @@ class BlogGateway
 
 	public function update($new, $cur)
 	{
-		$sql = " UPDATE   blogs SET author = :author , title = :title , body = :body , author = :author WHERE id = :id ";
+		$sql = "UPDATE blogs SET author = :author , title = :title , body = :body , author = :author WHERE id = :id ";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bindValue(":author", $new['author'] ?? $cur['author']);
 		$stmt->bindValue(":title", $new['title'] ?? $cur['title']);
